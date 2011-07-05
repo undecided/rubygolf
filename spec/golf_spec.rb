@@ -69,7 +69,8 @@ describe "Golf" do
     it "should return all sub-lists of the input, sorted by length then numerically" do
       Golf.hole5([1,2,3,4]).should ==
         [[1], [2], [3], [4], [1, 2], [2, 3], [3, 4], [1, 2, 3], [2, 3, 4], [1, 2, 3, 4]]
-
+    end
+    it "should work for 4,10,15,23" do
       Golf.hole5([4,10,15,23]).should ==
         [[4], [10], [15], [23], [4, 10], [10, 15], [15, 23], [4, 10, 15], [10, 15, 23], [4, 10, 15, 23]]
     end
@@ -156,3 +157,14 @@ describe "Golf" do
 
 end
 
+
+
+#   def hole7(arr)
+#      t = arr.each_cons(2).to_a; t.map {|a| a[1]-a[0]==1 ? (a[0]==t[0][0] ? a[0] : (a[1]==t.last.last ? ['-', a[1]] : nil)) : a[1]}.flatten
+#    end
+
+
+
+#   def hole7(arr)
+#      t = arr.each_cons(2).to_a; t.map {|a| a[1]-a[0]==1 ? (a[0]==t[0][0] ? a[0] : (a[1]==t.last.last ? ['-', a[1]] : nil)) : a[1]}.flatten
+#    end
