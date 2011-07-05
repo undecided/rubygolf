@@ -164,7 +164,3 @@ end
 #    end
 
 
-
-#   def hole7(arr)
-#      t = arr.each_cons(2).to_a; t.map {|a| a[1]-a[0]==1 ? (a[0]==t[0][0] ? a[0] : (a[1]==t.last.last ? ['-', a[1]] : nil)) : a[1]}.flatten
-#    end
