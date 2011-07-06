@@ -1,12 +1,3 @@
-module Enumerable
-  alias :m :map
-  alias :i :find_index
-  def next_nonsec(from)
-    nidx = i(from) + 1
-    n = self[nidx]
-    n && n - from == 1 ? next_nonsec(n) : n
-  end
-end
 class Golf
   class<<self
     def hole1(j)
@@ -22,33 +13,30 @@ class Golf
     end
     
     def hole4(j)
-      j.m{|m| m.sub(/(man.+)/,'hat(\1)')}.
-          m{|m| m.sub(/(dog.+)\)/,'\1(bone))')}.
-          m{|m| m.sub('cat','dead')}
+      j.map{|m| m.sub(/(man.+)/,'hat(\1)')}.
+          map{|m| m.sub(/(dog.+)\)/,'\1(bone))')}.
+          map{|m| m.sub('cat','dead')}
     end
     
     def hole5(j)
-      (1..j.size).m{|n| j.each_cons(n).to_a}.flatten(1)
+      (1..j.size).map{|n| j.each_cons(n).to_a}.flatten(1)
     end
     
     def hole6(k)0
-      (1..k).m{|n| n%15==0 ? 'fizzbuzz' : (n%3==0 ? 'fizz' : (n%5==0 ? 'buzz' : n))}
+      (1..k).map{|n| n%15==0 ? 'fizzbuzz' : (n%3==0 ? 'fizz' : (n%5==0 ? 'buzz' : n))}
     end
     
     def hole7(a)
-      arr = []
-      i = 0
-      start = a[i]
-      while(b = a.next_nonsec(start))
-        puts "found next: #{b}"
-        finish = a[a.i(b)-1]
-        arr << a.i(start)==a.i(b)+1 ? (start=b) : (start=finish;"#{start}-#{finish}")
-      end
-      arr << "#{start}-#{a.last}"
+      idxs = []
+      b = a.map {|i| i%10 }
+      c = b.each_cons(1).to_a
+      d = []
+      c.each_with_index { |n,i| (d[0] && d.last.last == n[0] - 1) ? d.last << n[0] : d << [n[0]] }
+      d.map { |n| n.size > 1 ? "#{n[0]}-#{n.last}" : n}
     end
 
     def hole8(k)
-      (1..k).m{|n|f(n-1)}
+      (0..k-1).map{|n|f(n)}
     end
     
     def f(v)
