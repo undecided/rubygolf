@@ -28,11 +28,11 @@ class Golf
     
     def hole7(a)
       idxs = []
-      b = a.map {|i| i%10 }
+      b = a
       c = b.each_cons(1).to_a
       d = []
       c.each_with_index { |n,i| (d[0] && d.last.last == n[0] - 1) ? d.last << n[0] : d << [n[0]] }
-      d.map { |n| n.size > 1 ? "#{n[0]}-#{n.last}" : n}
+      d.map { |n| n.size > 1 ? "#{n[0]}-#{n.last}" : n.to_s}
     end
 
     def hole8(k)
